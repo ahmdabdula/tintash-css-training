@@ -5,11 +5,12 @@ body,html
 
 $colors:
 (
-    primary: #EFEAD8,
-    color2: #5F7161,
-    color3: #6D8B74,
-    color4: #D0C9C0,
-    darker-color2: darken(#5F7161,20%)
+    primary: #C4D7E0,
+    color2: #495C83,
+    color3: #7A86B6,
+    color4: #EC9B3B,
+    darker-color2: darken(#495C83,20%),
+    darker-color4: darken(#EC9B3B,20%)
 );
 
 $padding: 15px;
@@ -41,7 +42,7 @@ body
     {
         width: 100%;
         background-color: color(primary);
-        height: 90px;
+        height: 75px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -53,15 +54,14 @@ body
         {
             list-style-type: none;
             display: flex;
-            
-
+            padding-right: 30px;
             li
             {
                 padding: 20px;
                 a
                 {
                     font-weight: 900;
-                    font-size: 1.4rem;
+                    font-size: 1.3rem;
                     color: color(darker-color2);
                     text-decoration: none;
                 }
@@ -77,6 +77,8 @@ body
        width: 100%;
        height:100vh;
        background-color: color(darker-color2);
+       background-image: linear-gradient(color(color2),color(darker-color2));
+
     //    background-image: url(https://images.pexels.com/photos/131683/pexels-photo-131683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
     //    clip-path: polygon(21% 23%, 81% 23%, 100% 83%, 0 83%);
        display: flex;
@@ -107,8 +109,72 @@ body
 
     #projects
     {
-        background-color: color(color4);
-        padding: $padding;
+        background-color: color(darker-color4);
+        
+        padding: 50px $padding;
+        text-align: center;
+        color: white;
+
+        h1
+        {
+            width:fit-content;
+            margin: auto;
+        }
+
+        #list
+        {
+
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+
+            .project-title
+            {
+                margin: 20px;
+                width: 28%;
+                height: 400px;
+                background-color: rgb(39, 39, 39);
+                box-shadow: 10px 10px 10px rgba(0,0,0,.2);
+                border-radius: 10px;
+                object-fit: cover;
+                overflow: hidden;
+               
+                img
+                {
+                    height: 85%;
+                    
+                }
+
+                #text
+                {
+                    padding: 20px;
+                    font-size: 1.2em;
+                  
+                    .code
+                    {
+                        color:rgb(210, 137, 0);
+                        visibility: hidden;
+                        transition: all;
+                        // transition-duration: 200ms;
+                        // transition-delay: 200ms;
+                        transition-timing-function: ease-in-out;
+                    }
+
+                }
+            }
+
+            .project-title:hover #text .code
+            {
+                visibility: visible;
+            }
+
+            .project-title:hover 
+            {
+                box-shadow: 10px 10px 10px rgba(0,0,0,.4);
+            }
+        }
     }
 
     #bg
