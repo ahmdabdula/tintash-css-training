@@ -10,25 +10,36 @@ $colors:
     color3: #7A86B6,
     color4: #EC9B3B,
     darker-color2: darken(#495C83,20%),
-    darker-color4: darken(#EC9B3B,20%)
+    darker-color4: darken(#EC9B3B,20%),
+    contrast:rgb(137, 52, 52)
 );
 
 $padding: 15px;
 $border: 10px;
-$nav-height: 90px;
 
 @function color($color-name)
 {
     @return map-get($colors, $color-name)
 }
 
-$desktop :840px;
-
-@mixin desktop {
-    @media (min-width: #{$desktop})
+@mixin mobile {
+    @media (max-width: 600px)
     {
         @content;
     }
+}
+
+@mixin tab {
+    @media (max-width: 992px) and (min-width:601px) 
+    {
+        @content;
+    }
+}
+
+@mixin transition {
+    transition: all;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
 }
 
 
@@ -36,13 +47,11 @@ body
 {
     margin: 0;
     width: 100%;
-    
 
     #nav
     {
         width: 100%;
         background-color: color(primary);
-        height: 75px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -52,14 +61,42 @@ body
 
         ul
         {
+            height: 100%;
+            margin: 0;
+        
+            @include mobile
+            {
+                    
+                    padding-right: 5px;
+            }
+           
             list-style-type: none;
             display: flex;
             padding-right: 30px;
+
+            li:hover
+            {
+                background-color: color(darker-color4);
+
+                a
+                {
+                    color: white;
+                }
+            }
+
             li
             {
+
+                @include transition();
                 padding: 20px;
                 a
                 {
+                    @include transition();
+                    @include mobile
+                {
+                    font-size: .9rem;
+
+                }
                     font-weight: 900;
                     font-size: 1.3rem;
                     color: color(darker-color2);
@@ -78,9 +115,6 @@ body
        height:100vh;
        background-color: color(darker-color2);
        background-image: linear-gradient(color(color2),color(darker-color2));
-
-    //    background-image: url(https://images.pexels.com/photos/131683/pexels-photo-131683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
-    //    clip-path: polygon(21% 23%, 81% 23%, 100% 83%, 0 83%);
        display: flex;
        justify-content: center;
        align-items: center;
@@ -88,7 +122,6 @@ body
 
        #heading
        {
-       
             h1
             {
                 font-size: 4em;
@@ -118,11 +151,37 @@ body
         h1
         {
             width:fit-content;
+            margin-top: 2rem !important;
             margin: auto;
+        }
+
+        #button
+        {
+            width: 200px;
+            padding: 20px;
+            font-size: 1.1em;
+            margin:20px;
+            border:none;
+            border-radius: 5px;
+            color: white;
+            background-color: color(darker-color2);
+            @include transition()
+           
+        }
+
+        #button:hover
+        {
+            background-color: color(contrast);
         }
 
         #list
         {
+
+            @include mobile
+            {
+                padding: 0px;
+            }
+
 
             padding: 20px;
             display: flex;
@@ -132,9 +191,21 @@ body
 
             .project-title
             {
+
+
+                @include mobile
+                {
+                    width: 100%;
+                }
+
+                @include tab
+                {
+                    width: 45%;
+                }
+
                 margin: 20px;
                 width: 28%;
-                height: 400px;
+                height: 350px;
                 background-color: rgb(39, 39, 39);
                 box-shadow: 10px 10px 10px rgba(0,0,0,.2);
                 border-radius: 10px;
@@ -149,17 +220,15 @@ body
 
                 #text
                 {
-                    padding: 20px;
+                    padding: 10px;
                     font-size: 1.2em;
+                    
                   
                     .code
                     {
                         color:rgb(210, 137, 0);
                         visibility: hidden;
-                        transition: all;
-                        // transition-duration: 200ms;
-                        // transition-delay: 200ms;
-                        transition-timing-function: ease-in-out;
+                        @include transition()
                     }
 
                 }
@@ -172,133 +241,81 @@ body
         }
     }
 
-    #bg
+    #footer
     {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        clip-path: polygon(100% 0, 100% 65%, 46% 100%, 0 100%, 0 0);
-        background-color: color(color2);
+        background-color: color(darker-color2);
+        height: 100vh;
+      
+        @include mobile
+                {
+                    flex-wrap: wrap;
+                }
 
-        @include desktop
-        {
-            clip-path: polygon(85% 0, 46% 100%, 0 100%, 0 0);
-        }
-
-        h1
-        {
-            
-        }
-    }
-
-    header a 
-    {
-        color: white;
-        text-decoration: none;
-        padding: $padding ;
-    }
-
-    main
-    {
-
-        @include desktop
-        {
-            display: grid;
-            grid-template-columns: 50% auto;
-            grid-template-areas: "primary card" ;
-
-            
-        }
-
-        section#card
-        {
-            background-color: white;
-            padding: $padding;
-            margin:  1em auto;
-            border-radius: $border;
-            box-shadow: 0 10px 30px rgba(0,0,0,.2);
-            width: 80%;
-
-            @include desktop
-        {
-            grid-area: card;
-            height: fit-content;
-            align-self: center;
-            margin: 1em;
-
-        }
-
-            ul {
-                list-style-type: none;
-                margin:0;
-                padding:0;
-               
-                li
-                    {
-                        margin-bottom: 10px;
-                      span
-                         {
-                              position: absolute;
-                              width: 30px;
-                              height:30px;
-                              background-color: color(primary-light);
-                              border-radius: 50%;
-                              margin-right: 10px;
-                          }
-
-                          strong
-                          {
-                            display: inline-block;
-                            margin-left: max(40px);
-                            margin-top:10px; 
-                          }
-
-
-                   }
-                 }
-        }
-
-        section#primary
-        {
-
-            @include desktop
-            {
-                grid-area: primary;
-                margin: 4em 0 0 4em;
-    
-            }
-
-            color: white;
-            padding: $padding;
-            text-align: center;
-            
-
+        #heading
+       {
+        height: 80%;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        flex-direction: column;
+        padding: $padding;
+        text-align: center;
             h1
             {
-                font-size: 3em;
-                margin-top: 10px;
-                text-transform: uppercase;
+                font-size: 4em;
+                color: white;
+                font-weight: bolder;
+                padding: 0px;
+                margin: 0px;
+
+                @include mobile
+                {
+                    font-size: 2em;
+                }
             }
+
             p
             {
-                font-size: 1.4em;
+                color: color(color4);
             }
 
-            a
+            #social-media
             {
-                color: color(primary-dark);
-                border-radius: $border;
-                text-decoration: none;
-                text-transform: uppercase;
-                font-weight: bold;
-                background-color: wheat;
-                display: block;
-                text-align: center;
-                margin: 50px auto 0 auto;
-                padding: $padding;
+                display: flex;
+                font-size: 2em;
+                @include mobile
+                {
+                    font-size: 1em;
+                }
+
+                #media-name:hover
+                {
+                    margin-top: 15px;
+                }
+
+                #media-name
+                {
+                    @include transition();
+                    margin: 20px;
+
+                #icons
+                {
+                    color: white;
+          
+                }
+                #icon-name
+                {
+                    color: white;
+                    text-decoration: none;
+                }
             }
-        }
+            }
+
+       }
+
+
 
     }
+
+ 
 }
