@@ -15,7 +15,7 @@ $colors:
 );
 
 $padding: 15px;
-$border: 10px;
+$border: 8px;
 
 @function color($color-name)
 {
@@ -216,7 +216,8 @@ body
                 {
                
                     width: 100%;
-                    border-radius: $border;
+                    height: 80%;
+                    border-radius:  $border $border 0 0;
                 }
 
                 #text
