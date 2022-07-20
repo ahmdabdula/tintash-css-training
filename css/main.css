@@ -70,9 +70,12 @@ body #welcome-section #heading h1 {
   font-weight: bolder;
   padding: 0px;
   margin: 0px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2666666667);
 }
 body #welcome-section #heading p {
   color: #EC9B3B;
+  font-size: 1.5em;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2666666667);
 }
 body #projects {
   background-color: #b06711;
@@ -103,54 +106,46 @@ body #projects #button {
 body #projects #button:hover {
   background-color: rgb(137, 52, 52);
 }
-body #projects #list {
+body #projects #project-grid {
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 @media (max-width: 600px) {
-  body #projects #list {
+  body #projects #project-grid {
     padding: 0px;
+    grid-template-columns: 1fr;
   }
 }
-body #projects #list .project-title {
+@media (max-width: 992px) and (min-width: 601px) {
+  body #projects #project-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+body #projects #project-grid .project-title {
   margin: 20px;
-  width: 28%;
-  height: 350px;
   background-color: rgb(39, 39, 39);
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
-  overflow: hidden;
 }
-@media (max-width: 600px) {
-  body #projects #list .project-title {
-    width: 100%;
-  }
+body #projects #project-grid .project-title img {
+  width: 100%;
+  border-radius: 10px;
 }
-@media (max-width: 992px) and (min-width: 601px) {
-  body #projects #list .project-title {
-    width: 45%;
-  }
+body #projects #project-grid .project-title #text {
+  padding: 15px;
+  font-size: 1em;
 }
-body #projects #list .project-title img {
-  height: 85%;
-}
-body #projects #list .project-title #text {
-  padding: 10px;
-  font-size: 1.2em;
-}
-body #projects #list .project-title #text .code {
+body #projects #project-grid .project-title #text .code {
   color: rgb(210, 137, 0);
   visibility: hidden;
   transition: all;
   transition-duration: 500ms;
   transition-timing-function: ease-in-out;
 }
-body #projects #list .project-title:hover #text .code {
+body #projects #project-grid .project-title:hover #text .code {
   visibility: visible;
 }
 body #footer {
@@ -177,6 +172,7 @@ body #footer #heading h1 {
   font-weight: bolder;
   padding: 0px;
   margin: 0px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2666666667);
 }
 @media (max-width: 600px) {
   body #footer #heading h1 {

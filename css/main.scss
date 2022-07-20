@@ -42,6 +42,11 @@ $border: 10px;
     transition-timing-function: ease-in-out;
 }
 
+@mixin shadow
+{
+    text-shadow: 2px 2px 3px #00000044;
+}
+
 
 body
 {
@@ -129,11 +134,14 @@ body
                 font-weight: bolder;
                 padding: 0px;
                 margin: 0px;
+                @include shadow();
             }
 
             p
             {
                 color: color(color4);
+                font-size: 1.5em;
+                @include shadow();
             }
        }
  
@@ -174,54 +182,47 @@ body
             background-color: color(contrast);
         }
 
-        #list
+        #project-grid
         {
 
             @include mobile
             {
                 padding: 0px;
+                grid-template-columns: 1fr;
+            }
+
+            @include tab
+            {
+                grid-template-columns: 1fr 1fr;
             }
 
 
             padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+           
 
             .project-title
             {
-
-
-                @include mobile
-                {
-                    width: 100%;
-                }
-
-                @include tab
-                {
-                    width: 45%;
-                }
-
+                
                 margin: 20px;
-                width: 28%;
-                height: 350px;
                 background-color: rgb(39, 39, 39);
                 box-shadow: 10px 10px 10px rgba(0,0,0,.2);
                 border-radius: 10px;
                 object-fit: cover;
-                overflow: hidden;
+           
                
                 img
                 {
-                    height: 85%;
-                    
+               
+                    width: 100%;
+                    border-radius: $border;
                 }
 
                 #text
                 {
-                    padding: 10px;
-                    font-size: 1.2em;
+                    padding: 15px;
+                    font-size: 1em;
                     
                   
                     .code
@@ -267,6 +268,7 @@ body
                 font-weight: bolder;
                 padding: 0px;
                 margin: 0px;
+                @include shadow();
 
                 @include mobile
                 {
